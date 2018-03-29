@@ -9,7 +9,7 @@ angular.module('exoStarWars')
 		};
 
 
-		function getData (type,page){
+		function getData (type, typeSearch,page,query){
 			switch(type){
 				case 'people' : 
 					url = urlBase+"people/?page="+page;
@@ -29,6 +29,9 @@ angular.module('exoStarWars')
 				case 'vehicles':
 					url = urlBase+"vehicles/?page="+page;
 					break;
+				case 'search' : 
+					url = urlBase+""+typeSearch+"/?search="+query;
+					break;
 				default:
 					url = urlBase+"people/?page="+page;
 			}
@@ -39,7 +42,9 @@ angular.module('exoStarWars')
 				}
 			).then(function(data){if(data!=null) return data.data;});
 
-		}
+		};
+
+	
 
 		return service;
 	}])
