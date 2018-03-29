@@ -9,36 +9,35 @@ angular.module('exoStarWars')
 		};
 
 
-		function getData (type,id){
+		function getData (type,page){
 			switch(type){
 				case 'people' : 
-					console.log(id);
-					url = urlBase+"people/"+id+"/";
+					url = urlBase+"people/?page="+page;
 					break;
 				case 'planets':
-					url = urlBase+"planets/"+id+"/";
+					url = urlBase+"planets/?page="+page;
 					break;
 				case 'starships' : 
-					url = urlBase+"starships"+id+"/";
+					url = urlBase+"starships/?page="+page;
 					break;
 				case 'films':
-					url = urlBase+"films/"+id+"/";
+					url = urlBase+"films/?page="+page;
 					break;
 				case 'species' : 
-					url = urlBase+"species/"+id+"/";
+					url = urlBase+"species/?page="+page;
 					break;
 				case 'vehicles':
-					url = urlBase+"vehicles/"+id+"/";
+					url = urlBase+"vehicles/?page="+page;
 					break;
 				default:
-					url = urlBase+"people/"+id+"/";
+					url = urlBase+"people/?page="+page;
 			}
 			return $http(
 				{
 					method : "GET",
 					url : url				
 				}
-			).then(function(data){return data.data;});
+			).then(function(data){if(data!=null) return data.data;});
 
 		}
 

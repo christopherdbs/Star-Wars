@@ -2,8 +2,9 @@
 <!-- le formulaire de recherche de films -->
 
 <div grid="bottom" class="">
-	<div column="4">
-		<form>Grand <input  ng-value="6"  type="radio" ng-model="starWars.size"> Moyen <input  ng-value="4"  type="radio" ng-model="starWars.size"> Petit <input  ng-model="starWars.size" type="radio" name="Size" ng-value="3"></form>
+	<div column="4" >
+		<form>Grand <input  ng-value="6"  type="radio" ng-model="starWars.size"> Moyen <input  ng-value="4"  type="radio" ng-model="starWars.size"> Petit <input ng-model="starWars.size" type="radio" name="Size" ng-value="3"              ng-checked="(starWars.size == 3)"
+></form>
 	</div>
 
 	<div column="+4 4">
@@ -15,8 +16,8 @@
 
 <!-- La barre de navigation avec les différents types de recherche de films -->
 
-<div class="_mtxs" grid="justify-around">
-	<button  ng-repeat="t in starWars.types"  column="2" ng-class="">
+<div class="_mtxs" grid="justify-around" id="category">
+	<button  ng-repeat="t in starWars.types" ng-click="starWars.changeType(t.name)"  id={{t.name}} column="2" ng-class="">
 		{{t.label}}
 	</button> 
 </div>
@@ -40,7 +41,7 @@
 
 <!-- Tri par titre  -->
 	<div column class="_text-right">
-		Titres 
+		Noms 
 		<a   href=""  ng-click="starWars.sortTitle(true)"  ><i class="fa fa-caret-down"></i></a> 
 		<a  href=""  ng-click="starWars.sortTitle(false)"  ><i class="fa fa-caret-up"></i></a> 
 
@@ -57,7 +58,7 @@
 				<div class="card-content">
 					<h5 class="title">{{data.title}}</h5>
 				
-					<span style="float:right" >{{data.name}}</span>
+					<span style="float:center" >{{data.name}}</span>
 					{{film.release_date | date: 'yyyy'}}
 					<!--p class="content">
 					{{film.overview}}
