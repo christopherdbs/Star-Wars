@@ -1,0 +1,69 @@
+
+<!-- le formulaire de recherche de films -->
+
+<div grid="bottom" class="">
+	<div column="4">
+		<form>Grand <input  ng-value="6"  type="radio" ng-model="starWars.size"> Moyen <input  ng-value="4"  type="radio" ng-model="starWars.size"> Petit <input  ng-model="starWars.size" type="radio" name="Size" ng-value="3"></form>
+	</div>
+
+	<div column="+4 4">
+		<form  class="_text-right">
+			<input   style="width:auto" type="text"><button><i class="fa fa-search"></i></button>
+		</form>
+	</div>
+</div>
+
+<!-- La barre de navigation avec les différents types de recherche de films -->
+
+<div class="_mtxs" grid="justify-around">
+	<button  ng-repeat="t in starWars.types"  column="2" ng-class="">
+		{{t.label}}
+	</button> 
+</div>
+<div grid="justify-between" class="_mtxs">
+	
+<!-- Tri par note  -->
+	<div column class="_text-left">
+		Notes 
+		<a  href="" ng-click="" ><i class="fa fa-caret-down"></i></a> 
+		<a  href="" ng-click=""><i class="fa fa-caret-up"></i></a> 
+
+	</div>
+
+<!-- Pagination de l'affichage de la liste de films -->
+
+<div column class="_text-center _ts3"> 
+		<a  href="" ng-click="starWars.decPage()"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a>
+		{{starWars.currentPage}} / {{starWars.totalPages}} 
+		<a  href="" ng-click="starWars.incPage()"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a>
+	</div>
+
+<!-- Tri par titre  -->
+	<div column class="_text-right">
+		Titres 
+		<a   href=""  ng-click="starWars.sortTitle(true)"  ><i class="fa fa-caret-down"></i></a> 
+		<a  href=""  ng-click="starWars.sortTitle(false)"  ><i class="fa fa-caret-up"></i></a> 
+
+	</div>
+</div>
+
+<!-- Grille d'affichage de la page courante de la liste de films -->
+
+<div loading="loading">
+	<div grid="top" class="">
+		<div ng-repeat="data in starWars.data" column="{{starWars.size}}" class="_ps">
+			<div class="card-box _text-center">
+				
+				<div class="card-content">
+					<h5 class="title">{{data.title}}</h5>
+				
+					<span style="float:right" >{{data.name}}</span>
+					{{film.release_date | date: 'yyyy'}}
+					<!--p class="content">
+					{{film.overview}}
+					</p-->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
